@@ -1,7 +1,43 @@
 package sha3.MainClass;
 
+import java.math.BigInteger;
+
 public class Round {
 
+    String [] RC = {
+            
+            "0000000000000001", "0000000000008082",
+            "800000000000808A", "8000000080008000",
+            "000000000000808B", "0000000080000001",
+            "8000000080008081", "8000000000008009",
+            "000000000000008A", "0000000000000088",
+            "0000000080008009", "000000008000000A",
+            "000000008000808B", "800000000000008B",
+            "8000000000008089", "8000000000008003",
+            "8000000000008002", "8000000000000080",
+            "000000000000800A", "800000008000000A",
+            "8000000080008081", "8000000000008080",
+            "0000000080000001", "8000000080008008",
+            
+        };
+    
+    // CONVERTING RC constant from a hex value to a string value
+    
+    public static String HexToBinary(char Hex) {
+        int i = Integer.parseInt(Character.toString(Hex), 16);
+        String Bin = Integer.toBinaryString(i);
+        return Bin;
+    }
+    
+    public String hexToBin(String s) {
+        char []keyCharArray = s.toCharArray();
+        String str = "";
+        for (int i=0;i<s.length();i++)
+            str = str + HexToBinary((keyCharArray[i]));
+        
+        return str;
+      }
+    
     public int[][] matrixMultiply(int a[][], int b[][]){
         
         a[0][0] = a[0][0] * b[0][0] + a[0][1] * b[1][0] ; 
@@ -147,7 +183,10 @@ public class Round {
         
     }
     
-    public void fifth(String str){
+    public void fifth(Sponge sp, int r){
+        
+        String temp = RC[r];
+        String rcConstant = hexToBin(temp);
         
     }
     
