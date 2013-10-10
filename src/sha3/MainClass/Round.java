@@ -51,30 +51,8 @@ public class Round {
                    for (int a = 0 ; a < 5 ;a++) {
                        
                         // TODO DOES NOT TAKE INTO ACCOUNT THE VALUE OF K  in colB 
-                       if (j == 0 ) {
-                           colA =  arrayIndex(a, 4, k);
-                           if (k !=0 )
-                               colB =  arrayIndex(a, j+1, k-1);
-                           else
-                               colB =  arrayIndex(a, j+1, 63);
-                       
-                       } else if (j == 4) {
-                           
-                           colA =  arrayIndex(a, j-1, k);
-                           
-                           if (k != 0 )
-                               colB =  arrayIndex(a, j+1, k-1);
-                           else
-                               colB =  arrayIndex(a, j+1, 63);
-                           
-                       } else {
-                           colA =  arrayIndex(a, j-1, k);
-                           
-                           if (k != 0 )
-                               colB =  arrayIndex(a, j+1, k-1);
-                           else
-                               colB =  arrayIndex(a, j+1, 63);
-                       }
+                       colA =  arrayIndex(a, modulo(j-1,5), k);
+                       colB =  arrayIndex(a, modulo(j+1,5), modulo(k-1,64));
                        
                        dummy = (char ) (spongeArrayLocal.charAt(index)^ spongeArrayLocal.charAt(colA) ^ spongeArrayLocal.charAt(colB)) ;
                        spongeArrayLocal.replace(spongeArrayLocal.charAt(index),dummy);
@@ -90,10 +68,12 @@ public class Round {
     // Variable numbers corresponding to the Algorithm from Wikipedia
     
     public void rho( Sponge sp){
+        
         String str = sp.getSpongeString();
         int [][]rem =new int[][] {{3,2,},{1,0}};
         int [][]initial  = new int[][] {{3,2,},{1,0}};
         int i , j,index1 , index2 ;
+        
         for (int k = 0 ; k <= 24 ;k++) {
             for (int t =0 ; t <=24 ;t++) {
                 if (t>1) {
