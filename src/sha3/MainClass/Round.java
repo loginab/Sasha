@@ -14,7 +14,7 @@ public class Round {
     }
     
      
-    // caluculate i % j 
+    // calculate i % j 
     public int modulo(int i , int j){
         
         i = i % j;
@@ -87,7 +87,8 @@ public class Round {
             
         
     }
-    // Variable numbers corropsonding to algo from wikipedia
+    // Variable numbers corresponding to the Algorithm from Wikipedia
+    
     public void rho( Sponge sp){
         String str = sp.getSpongeString();
         int [][]rem =new int[][] {{3,2,},{1,0}};
