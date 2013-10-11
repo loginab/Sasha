@@ -14,7 +14,7 @@ public class Main {
             
             br = new BufferedReader(new FileReader("test.txt"));
             String line;
-            
+            // reading line of the file and hashing it.
             while ((line = br.readLine()) != null) {
                 
                 PreProcessing pP = new PreProcessing();
@@ -29,10 +29,11 @@ public class Main {
             }
         } catch (FileNotFoundException e) {
             // TODO Auto-generated catch block
-            e.printStackTrace();
+            System.out.println("File not found");
+            
         } catch (IOException e) {
             // TODO Auto-generated catch block
-            e.printStackTrace();
+            System.out.println("Input Output error");
         }
     
     }   

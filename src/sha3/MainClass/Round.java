@@ -1,9 +1,7 @@
 package sha3.MainClass;
 
-import java.math.BigInteger;
-
 public class Round {
-
+/* Constants used in the function itoa */
  String [] RC = {
             
             "0000000000000001", "0000000000008082",
@@ -21,7 +19,7 @@ public class Round {
             
         };
     
-    // calculate i % j 
+    // calculate (i mod j)
     public int modulo(int i , int j){
         
         i = i % j;
@@ -32,6 +30,7 @@ public class Round {
         return i;
     }
     
+    /* mapping between a 3-d array and 1-D array, word size =64 */
     public int arrayIndex(int i , int j , int k) {
         
         int index =0;
@@ -39,8 +38,8 @@ public class Round {
         return index;
         
     }
-    
-     
+    //Variable numbers corresponding to the Algorithm from Wikipedia
+    /* Thetha function in Sponge */
     public void thetha(Sponge sp){
         
         char[] spongeArrayLocal = (sp.getSpongeString()).toCharArray();
@@ -63,8 +62,8 @@ public class Round {
             
         
     }
-    // Variable numbers corresponding to the Algorithm from Wikipedia
     
+    /* Rho function in Sponge */
     public void rho( Sponge sp){
         
         char[] str = sp.getSpongeString().toCharArray();
@@ -75,7 +74,7 @@ public class Round {
         for (int k = 0 ;    k <= 24 ;k++) {
             for (int t =0 ; t <=24 ;t++) {
                 if (t>1) {
-                
+            
                     Utils.matrixMultiply(rem , initial);
                     i = rem [0][1];
                     j = rem [1][1];
@@ -91,11 +90,8 @@ public class Round {
                 }
                 index1 = arrayIndex(i, j, k);
                 index2 = arrayIndex(i, j, modulo(k-((t+1)*(t+2)/2),64));
-                
-               
                 str[index1] = str[index2];
-                
-                
+    
             }
             for (int a =0 ; a <2 ;a++) {
                 for (int b=0;b<2;b++) {
@@ -106,10 +102,8 @@ public class Round {
             
         sp.setSpongeString(String.copyValueOf(str));
     }
-        
-        
     
-    
+    /* Pi function in Sponge */
     public void pi(Sponge sp){
     
         char[] str = (sp.getSpongeString()).toCharArray();
@@ -126,7 +120,7 @@ public class Round {
         sp.setSpongeString(String.copyValueOf(str));
     }
     
-    
+    /* Chi function in Sponge */
     public void chi(Sponge sp){
         
         char[] str = (sp.getSpongeString()).toCharArray();
@@ -149,6 +143,7 @@ public class Round {
         
     }
     
+    /* Iota function in Sponge */
     public void iota(Sponge sp, int r){
         int index1;
         char[] str = (sp.getSpongeString()).toCharArray();
@@ -157,8 +152,7 @@ public class Round {
         for (int k =0 ; k <63;k++ ){
              index1 = arrayIndex(0, 0, k);
              str[index1] = Utils.xorWrapper(str[index1],rcConstant[k] );
-             //dummy = (char ) (str.charAt(index1)^ rcConstant.charAt(k)) ;
-             //str.replace(str.charAt(index1), dummy);
+            
              
         }
         sp.setSpongeString(String.copyValueOf(str));

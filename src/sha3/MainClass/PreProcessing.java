@@ -1,7 +1,7 @@
 package sha3.MainClass;
 
 public class PreProcessing {
-
+        //changing the string revcieved into its binary representation
         public String toBinary(String line){
            
             String binary = "" ;
@@ -15,19 +15,19 @@ public class PreProcessing {
             catch (Exception e){
              System.out.println(e.toString());
             }
-            //System.out.println("Initial length :"+ binary.length());
+            
             return (binary);
             
         }
-    
+        // initial padding 10*1 form making it a multiple of BIT_RATE 
         public String toPad(String line) {
             
             line = line + "1";
-            while ((line.length() + 1) % 1088 != 0) {
-                line = line +"0";
+            while ((line.length() + 1) % Sponge.BIT_RATE != 0) {
+                line = line + "0";
             }
             line = line + "1";
-            //System.out.println("Length after padding :"+ line.length());
+            
             return line;
         }
     

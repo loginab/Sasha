@@ -2,7 +2,7 @@ package sha3.MainClass;
 
 public class Utils {
     
-    
+  /* Unnecessary function used once in Preprocessing , the code can be made to work with xor Wrapper define below */  
   public static String XOR(char a , char b){
         if (a == b )
             return "0";
@@ -11,7 +11,7 @@ public class Utils {
         
         
     }
-    
+    /*Matrix multiplication  used in function rho*/
     public static void matrixMultiply(int a[][], int b[][]){
         
         a[0][0] = (a[0][0] * b[0][0] + a[0][1] * b[1][0]) % 5 ; 
@@ -23,7 +23,7 @@ public class Utils {
         
     }
     
-    
+    /* xor wrapper for xoring two char's stored as binary*/
     public static char xorWrapper(char a , char b){
         if (a == b )
             return '0';
@@ -32,7 +32,7 @@ public class Utils {
         
         
     }
-    
+    /* not wrapper for inverting a binary value*/
     public static char complement(char a){
         if (a == '0' )
             return '1';
@@ -41,7 +41,7 @@ public class Utils {
         
         
     }
-
+    /* and wrapper for cal. logical and of two char's stored as binary*/
     public static char andWrapper(char a,char b){
         if (a == '1' && b =='1' )
             return '1';
@@ -50,8 +50,8 @@ public class Utils {
         
         
     }
-    
- public static String hexToBin(String s) {
+    /*Converting string in hex to Binary */
+    public static String hexToBin(String s) {
         
         char[] dummy = s.toCharArray() ;
         String str  = "";
@@ -129,12 +129,7 @@ public class Utils {
             
         }
         
-        
         return str;
         
-        
-    }
-
-
- 
+      }
 }
