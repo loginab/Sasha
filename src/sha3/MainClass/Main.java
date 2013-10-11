@@ -1,6 +1,7 @@
 package sha3.MainClass;
 
 import java.io.*;
+import java.math.BigInteger;
 
 
 public class Main {
@@ -20,10 +21,11 @@ public class Main {
                 Sponge sponge = new Sponge();
                 String binaryString = pP.toBinary(line);
                 String paddedString = pP.toPad(binaryString);
-                System.out.println("Length of the padded String :"+ paddedString.length());
                 String hash = sponge.mainSponge(paddedString);
-                System.out.println("Generated hash :"+hash);
-               // System.out.println("Length :"+hash.length());
+                System.out.println("Input String : "+line);
+                //System.out.println("Generated hash :"+hash);
+                System.out.println("Hased Value  : " +new BigInteger(hash, 2).toString(16));
+               
             }
         } catch (FileNotFoundException e) {
             // TODO Auto-generated catch block
