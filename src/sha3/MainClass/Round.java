@@ -72,7 +72,7 @@ public class Round {
         int [][]initial  = new int[][] {{3,2,},{1,0}};
         int i , j,index1 , index2 ;
         
-        for (int k = 0 ; k <= 24 ;k++) {
+        for (int k = 0 ;    k <= 24 ;k++) {
             for (int t =0 ; t <=24 ;t++) {
                 if (t>1) {
                 
@@ -83,7 +83,7 @@ public class Round {
                 }
                 else if (t == 0){
                    
-                    i = 0; j = 0; 
+                    i = 1; j = 0; 
                 }
                 else {
                     
@@ -134,14 +134,14 @@ public class Round {
         
         for(int i =0 ; i< 5;i++){
             for (int j = 0 ; j <5;j++){
-                for (int k =0 ;k <5;k++){
+                for (int k =0 ;k <64;k++){
                     
                     index1 = arrayIndex(i, j, k);
                     index2 = arrayIndex(j, modulo(j+1,5), k);
                     index3 = arrayIndex(j, modulo(j+2,5), k);
-                    str[index1] = Utils.andWrapper(Utils.xorWrapper(str[index1], Utils.complement(str[index2])), str[index3]);                    
-                    //  dummy = (char ) (str.charAt(index1)^ (~str.charAt(index2)) & str.charAt(index3)) ;
-                    // str.replace(str.charAt(index1), dummy);
+                 
+                    str[index1] = Utils.xorWrapper(str[index1], Utils.andWrapper(Utils.complement(str[index2]), str[index3]));
+                    
                 }
             }
         }
