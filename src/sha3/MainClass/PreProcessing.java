@@ -15,7 +15,7 @@ public class PreProcessing {
             catch (Exception e){
              System.out.println(e.toString());
             }
-            System.out.println("Initial length :"+ binary.length());
+            //System.out.println("Initial length :"+ binary.length());
             return (binary);
             
         }
@@ -27,7 +27,7 @@ public class PreProcessing {
                 line = line +"0";
             }
             line = line + "1";
-            System.out.println("Length after padding :"+ line.length());
+            //System.out.println("Length after padding :"+ line.length());
             return line;
         }
     
